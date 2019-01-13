@@ -1,50 +1,122 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-        <!-- Bootstrap core CSS -->
-        <link href="MDB-Free_4.6.1/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="MDB-Free_4.6.1/css/mdb.min.css" rel="stylesheet">
-        <!-- Your custom styles (optional) -->
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <form id="gifForm" class="form-inline md-form mr-auto mb-4">
-            <label for="gifInput">Search for a gif!</label>
-            <input type="text" class="form-control mr-sm-2" id="gifInput" required="required" pattern="[A-Za-z0-9]{1,20}" placeholder="Search" aria-label="Search">
-            <button id="addGif" value="Add Gif" class="btn btn-elegant btn-rounded btn-sm my-0" type="submit">Search</button>
-        </form>
+<html lang="en">
 
-        <br>
-        <div id="buttonsHere" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.min.css" rel="stylesheet">
 
-        
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Left -->
+                <form id="gifForm" class="form-inline md-form mr-auto mb-4">
+                    <input type="text" class="form-control mr-sm-2 nav-item" id="gifInput" required="required" pattern="[A-Za-z0-9]{1,20}"
+                        placeholder="Search" aria-label="Search">
+                    <button id="addGif" value="Add Gif" class="btn btn-outline-white" type="submit">Giphy Search</button>
+                </form>
+                <div id="buttonsHere" class="form-inline md-form mr-auto mb-4">
+                </div>
+
+
+            </div>
+
         </div>
-        <br>
-        <div id="gifsHere">
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Full Page Intro -->
+    <div class="view">
+
+        <video class="video-intro" poster="https://mdbootstrap.com/img/Photos/Others/background.jpg" playsinline
+            autoplay muted loop>
+            <source src="https://mdbootstrap.com/img/video/Lines-min.mp4" type="video/mp4">
+        </video>
+
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="text-center white-text mx-5 wow fadeIn">
+                
+            <div class="card card-cascade wider">
+
+                
+
+                    <!-- Card content -->
+                    <div class="card-body card-body-cascade text-center flex-row">
+    
+                            <div class="row">
+                                  
+                                      <div id="mdb-lightbox-ui"></div>
+                                  
+                                      <div class="mdb-lightbox no-margin d-flex justify-content-start" id="gifsHere">
+                                  
+                                        <figure class="col-md-4">
+                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg" class="img-fluid">
+                                        </figure>
+                                  
+                                      </div>
+                            </div>
+    
+                    </div>
+
+            </div>
+
+            <!-- Card -->
+            <!-- Card -->
+
+
+
+
+
+
         </div>
+        <!-- Mask & flexbox options-->
 
-        <script type="text/javascript" src="MDB-Free_4.6.1/js/jquery-3.3.1.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="MDB-Free_4.6.1/js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="MDB-Free_4.6.1/js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="MDB-Free_4.6.1/js/mdb.min.js"></script>
+    </div>
+    <!-- Full Page Intro -->
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        
-        <script src="js/app.js" async defer></script>
-    </body>
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+    </script>
+
+</body>
+
 </html>

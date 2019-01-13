@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  
+  
 
   var gifsArr = ["gundam", "pokemon", "outlaw star", "trigun", "full metal alchemist", "Dragon Ball"];
 
@@ -34,7 +36,7 @@ $(document).ready(function () {
   function displayGifs() {
     var gifRequest = $(this).attr("data-name");
     var queryURL =
-      "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=3";
+      "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=5";
     $.ajax({
       url: queryURL,
       method: 'GET'
@@ -48,14 +50,14 @@ $(document).ready(function () {
       for (var i = 0; i < gifRequest.length; i++) {
 
         var gifDiv = $("<div>");
-        gifDiv.addClass("gifDiv");
+        gifDiv.addClass("sm-4");
         var gifImage = $("<img>");
         gifImage.attr("src", gifRequest[i].images.fixed_height_still.url);
         gifImage.attr("data-still", gifRequest[i].images.fixed_height_still.url);
         gifImage.attr("data-animate", gifRequest[i].images.fixed_height.url);
         gifImage.attr("data-state", "still");
-        gifImage.addClass("image");
-        gifDiv.append(gifImage);
+        gifImage.attr("class", "image");
+        $(gifDiv).append(gifImage);
         $("#gifsHere").append(gifDiv);
       }
     });
@@ -74,24 +76,28 @@ $(document).ready(function () {
       $(this).attr('data-state', 'still');
     }
   });
+  // function find_duplicate_in_array(arra1) {
+  //   var object = {};
+  //   var result = [];
+  
+  //   arra1.forEach(function (item) {
+  //     if(!object[item])
+  //         object[item] = 0;
+  //       object[item] += 1;
+  //   })
+  
+  //   for (var prop in object) {
+  //      if(object[prop] >= 2) {
+  //          result.push(prop);
+  //      }
+  //   }
+  //   return result;
+  
+  // }
+
+  $(function () {
+    $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+    });
 });
 
 
-function find_duplicate_in_array(arra1) {
-  var object = {};
-  var result = [];
-
-  arra1.forEach(function (item) {
-    if(!object[item])
-        object[item] = 0;
-      object[item] += 1;
-  })
-
-  for (var prop in object) {
-     if(object[prop] >= 2) {
-         result.push(prop);
-     }
-  }
-  return result;
-
-}
