@@ -1,11 +1,19 @@
+//The ready event occurs when the DOM (document object model) has been loaded
 $(document).ready(function () {
-  
-  
 
+
+
+  $(function () {
+    $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+  });
+
+
+  // gif array that will have the inital button set.
   var gifsArr = ["gundam", "pokemon", "outlaw star", "trigun", "full metal alchemist", "Dragon Ball"];
 
+  //function that creates gif buttons from the gifsArr, assigns class, attributes, and text
   function gifBtn() {
-    $("#buttonsHere").empty();
+    $("#buttonsHere").empty(); //empties the page to keep duplicates from being made
     for (var i = 0; i < gifsArr.length; i++) {
       var gifButton = $("<button>");
       gifButton.addClass("gifRequest btn btn-dark");
@@ -17,13 +25,16 @@ $(document).ready(function () {
 
   }
 
+
+
+  //Allows the user to input a search, push into the gifsArr which is then pulls into the gifBtn Function
   function userDynamicBtn() {
     $("#addGif").on("click", function () {
       var gifRequest = $("#gifInput").val().trim();
       //if (find_duplicate_in_array(gifsArr) == gifRequest){
       //  alert("You have already chosen that, choose another.");
       //  input.value = false;} 
-      if (gifRequest == "" /*|| gifRequest == find_duplicate_in_array(gifsArr) need to figure out how to tell if there is a duplicate request*/) {
+      if (gifRequest == "" /*|| gifRequest == find_duplicate_in_array(gifsArr) need to figure out how to tell if there is a duplicate request*/ ) {
         input.value = false;
       }
       $('form').val("");
@@ -32,6 +43,41 @@ $(document).ready(function () {
       return false;
     });
   }
+
+
+
+  //Allows the user to input a search, push into the gifsArr which is then pulls into the gifBtn Function
+  function userDynamicBtn() {
+    $("#addGif").on("click", function () {
+      var gifRequest = $("#gifInput").val().trim();
+      if (gifsArr.indexOf(gifRequest) === -1) {
+        gifsArr.push(gifRequest);
+        renderButtons();
+      } else {
+        alert("Please type a different show");
+      }
+      gifBtn();
+    });
+  }
+
+
+
+  // //Allows the user to input a search, push into the gifsArr which is then pulls into the gifBtn Function
+  // function userDynamicBtn() {
+  //   $("#addGif").on("click", function () {
+  //     var gifRequest = $("#gifInput").val().trim();
+  //     //if (find_duplicate_in_array(gifsArr) == gifRequest){
+  //     //  alert("You have already chosen that, choose another.");
+  //     //  input.value = false;} 
+  //     if (gifRequest == "" /*|| gifRequest == find_duplicate_in_array(gifsArr) need to figure out how to tell if there is a duplicate request*/ ) {
+  //       input.value = false;
+  //     }
+  //     $('form').val("");
+  //     gifsArr.push(gifRequest);
+  //     gifBtn();
+  //     return false;
+  //   });
+  // }
 
   function displayGifs() {
     var gifRequest = $(this).attr("data-name");
@@ -45,7 +91,7 @@ $(document).ready(function () {
       $("#gifsHere").empty();
       var gifRequest = response.data;
       if (gifRequest == "") {
-        alert("There isn't a gif for this selected button");
+        alert("Thee isn't a gif for this selected button");
       }
       for (var i = 0; i < gifRequest.length; i++) {
 
@@ -76,28 +122,5 @@ $(document).ready(function () {
       $(this).attr('data-state', 'still');
     }
   });
-  // function find_duplicate_in_array(arra1) {
-  //   var object = {};
-  //   var result = [];
-  
-  //   arra1.forEach(function (item) {
-  //     if(!object[item])
-  //         object[item] = 0;
-  //       object[item] += 1;
-  //   })
-  
-  //   for (var prop in object) {
-  //      if(object[prop] >= 2) {
-  //          result.push(prop);
-  //      }
-  //   }
-  //   return result;
-  
-  // }
 
-  $(function () {
-    $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
-    });
 });
-
-
