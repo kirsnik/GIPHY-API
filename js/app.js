@@ -1,45 +1,15 @@
 //The ready event occurs when the DOM (document object model) has been loaded
 $(document).ready(function () {
 
+
+
   $(function () {
     $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
   });
 
-  gifBtn();
-  userDynamicBtn();
 
   // gif array that will have the inital button set.
   var gifsArr = ["gundam", "pokemon", "outlaw star", "trigun", "full metal alchemist", "Dragon Ball"];
-
-  function displayGifs() {
-    var gifRequest = $(this).attr("data-name");
-    var queryURL =
-      "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=5";
-    $.ajax({
-      url: queryURL,
-      method: 'GET'
-    }).done(function (response) {
-      console.log('under func response', response);
-      $("#gifsHere").empty();
-      var gifRequest = response.data;
-      if (gifRequest == "") {
-        alert("Thee isn't a gif for this selected button");
-      }
-      for (var i = 0; i < gifRequest.length; i++) {
-
-        var gifDiv = $("<div>");
-        gifDiv.addClass("sm-4");
-        var gifImage = $("<img>");
-        gifImage.attr("src", gifRequest[i].images.fixed_height_still.url);
-        gifImage.attr("data-still", gifRequest[i].images.fixed_height_still.url);
-        gifImage.attr("data-animate", gifRequest[i].images.fixed_height.url);
-        gifImage.attr("data-state", "still");
-        gifImage.attr("class", "image");
-        $(gifDiv).append(gifImage);
-        $("#gifsHere").append(gifDiv);
-      }
-    });
-  }
 
   //function that creates gif buttons from the gifsArr, assigns class, attributes, and text
   function gifBtn() {
@@ -52,7 +22,6 @@ $(document).ready(function () {
       gifButton.text(gifsArr[i]);
       $("#buttonsHere").append(gifButton);
     }
-
   }
 
 
@@ -90,8 +59,39 @@ $(document).ready(function () {
     });
   }
 
+  function displayGifs() {
+    var gifRequest = $(this).attr("data-name");
+    var queryURL =
+      "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=5";
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).done(function (response) {
+      console.log('under func response', response);
+      $("#gifsHere").empty();
+      var gifRequest = response.data;
+      if (gifRequest == "") {
+        alert("Thee isn't a gif for this selected button");
+      }
+      for (var i = 0; i < gifRequest.length; i++) {
+
+        var gifDiv = $("<div>");
+        gifDiv.addClass("sm-4");
+        var gifImage = $("<img>");
+        gifImage.attr("src", gifRequest[i].images.fixed_height_still.url);
+        gifImage.attr("data-still", gifRequest[i].images.fixed_height_still.url);
+        gifImage.attr("data-animate", gifRequest[i].images.fixed_height.url);
+        gifImage.attr("data-state", "still");
+        gifImage.attr("class", "image");
+        $(gifDiv).append(gifImage);
+        $("#gifsHere").append(gifDiv);
+      }
+    });
+  }
+
+  gifBtn();
+  userDynamicBtn();
   $(document).on("click", ".gifRequest", displayGifs);
-  
   $(document).on("click", ".image", function () {
     var state = $(this).attr('data-state');
     if (state == 'still') {
