@@ -4,6 +4,8 @@ $(document).ready(function () {
 
   var gifsArr = ["gundam", "pokemon", "outlaw star", "trigun", "full metal alchemist", "Dragon Ball"];
 
+  
+
   function gifBtn() {
     $("#buttonsHere").empty();
     for (var i = 0; i < gifsArr.length; i++) {
@@ -14,22 +16,28 @@ $(document).ready(function () {
       gifButton.text(gifsArr[i]);
       $("#buttonsHere").append(gifButton);
     }
-
   }
 
   function userDynamicBtn() {
     $("#addGif").on("click", function () {
       var gifRequest = $("#gifInput").val().trim();
-      if (TVshows.indexOf(newTVshow)=== -1) {
-      TVshows.push(newTVshow);
-      renderButtons();
-      }
-      else {
-          alert("Please type a different show"); 
-      }
-      $("#form").val("")
+      if (gifsArr.indexOf(gifRequest)=== -1) {
       gifsArr.push(gifRequest);
       gifBtn();
+      }
+      else {
+        $( function() {
+          $( "#dialog-message" ).dialog({
+            modal: true,
+            buttons: {
+              Ok: function() {
+                $( this ).dialog( "close" );
+              }
+            }
+          });
+        } );; 
+      }
+      $("#form").val("")
     });
   }
 
@@ -51,7 +59,7 @@ $(document).ready(function () {
 
         var gifDiv = $("<div>");
         gifDiv.addClass("sm-4");
-        var gifImage = $("<img>");
+        var gifImage = $("<img>", "<br>");
         gifImage.attr("src", gifRequest[i].images.fixed_height_still.url);
         gifImage.attr("data-still", gifRequest[i].images.fixed_height_still.url);
         gifImage.attr("data-animate", gifRequest[i].images.fixed_height.url);
