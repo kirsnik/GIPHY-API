@@ -20,16 +20,16 @@ $(document).ready(function () {
   function userDynamicBtn() {
     $("#addGif").on("click", function () {
       var gifRequest = $("#gifInput").val().trim();
-      //if (find_duplicate_in_array(gifsArr) == gifRequest){
-      //  alert("You have already chosen that, choose another.");
-      //  input.value = false;} 
-      if (gifRequest == "" /*|| gifRequest == find_duplicate_in_array(gifsArr) need to figure out how to tell if there is a duplicate request*/) {
-        input.value = false;
+      if (TVshows.indexOf(newTVshow)=== -1) {
+      TVshows.push(newTVshow);
+      renderButtons();
       }
-      $('form').val("");
+      else {
+          alert("Please type a different show"); 
+      }
+      $("#form").val("")
       gifsArr.push(gifRequest);
       gifBtn();
-      return false;
     });
   }
 
@@ -59,6 +59,7 @@ $(document).ready(function () {
         gifImage.attr("class", "image");
         $(gifDiv).append(gifImage);
         $("#gifsHere").append(gifDiv);
+
       }
     });
   }
@@ -76,24 +77,6 @@ $(document).ready(function () {
       $(this).attr('data-state', 'still');
     }
   });
-  // function find_duplicate_in_array(arra1) {
-  //   var object = {};
-  //   var result = [];
-  
-  //   arra1.forEach(function (item) {
-  //     if(!object[item])
-  //         object[item] = 0;
-  //       object[item] += 1;
-  //   })
-  
-  //   for (var prop in object) {
-  //      if(object[prop] >= 2) {
-  //          result.push(prop);
-  //      }
-  //   }
-  //   return result;
-  
-  // }
 
   $(function () {
     $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
