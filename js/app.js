@@ -3,6 +3,8 @@ $(document).ready(function () {
 
 
 
+
+
   $(function () {
     $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
   });
@@ -11,7 +13,8 @@ $(document).ready(function () {
   // gif array that will have the inital button set.
   var gifsArr = ["gundam", "pokemon", "outlaw star", "trigun", "full metal alchemist", "Dragon Ball"];
 
-  //function that creates gif buttons from the gifsArr, assigns class, attributes, and text
+
+
   function gifBtn() {
     $("#buttonsHere").empty(); //empties the page to keep duplicates from being made
     for (var i = 0; i < gifsArr.length; i++) {
@@ -30,16 +33,22 @@ $(document).ready(function () {
   function userDynamicBtn() {
     $("#addGif").on("click", function () {
       var gifRequest = $("#gifInput").val().trim();
-      //if (find_duplicate_in_array(gifsArr) == gifRequest){
-      //  alert("You have already chosen that, choose another.");
-      //  input.value = false;} 
-      if (gifRequest == "" /*|| gifRequest == find_duplicate_in_array(gifsArr) need to figure out how to tell if there is a duplicate request*/ ) {
-        input.value = false;
+      if (gifsArr.indexOf(gifRequest) === -1) {
+        gifsArr.push(gifRequest);
+        gifBtn();
+      } else {
+        $(function () {
+          $("#dialog-message").dialog({
+            modal: true,
+            buttons: {
+              Ok: function () {
+                $(this).dialog("close");
+              }
+            }
+          });
+        });;
       }
-      $('form').val("");
-      gifsArr.push(gifRequest);
-      gifBtn();
-      return false;
+      $("#form").val("")
     });
   }
 
@@ -62,7 +71,7 @@ $(document).ready(function () {
   function displayGifs() {
     var gifRequest = $(this).attr("data-name");
     var queryURL =
-      "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=5";
+      "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=4";
     $.ajax({
       url: queryURL,
       method: 'GET'
@@ -77,7 +86,7 @@ $(document).ready(function () {
 
         var gifDiv = $("<div>");
         gifDiv.addClass("sm-4");
-        var gifImage = $("<img>");
+        var gifImage = $("<img>", "<br>");
         gifImage.attr("src", gifRequest[i].images.fixed_height_still.url);
         gifImage.attr("data-still", gifRequest[i].images.fixed_height_still.url);
         gifImage.attr("data-animate", gifRequest[i].images.fixed_height.url);
@@ -85,6 +94,7 @@ $(document).ready(function () {
         gifImage.attr("class", "image");
         $(gifDiv).append(gifImage);
         $("#gifsHere").append(gifDiv);
+
       }
     });
   }
@@ -103,4 +113,7 @@ $(document).ready(function () {
     }
   });
 
+  $(function () {
+    $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+  });
 });
