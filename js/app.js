@@ -1,10 +1,10 @@
 $(document).ready(function () {
-  
-  
+
+
 
   var gifsArr = ["gundam", "pokemon", "outlaw star", "trigun", "full metal alchemist", "Dragon Ball"];
 
-  
+
 
   function gifBtn() {
     $("#buttonsHere").empty();
@@ -21,21 +21,20 @@ $(document).ready(function () {
   function userDynamicBtn() {
     $("#addGif").on("click", function () {
       var gifRequest = $("#gifInput").val().trim();
-      if (gifsArr.indexOf(gifRequest)=== -1) {
-      gifsArr.push(gifRequest);
-      gifBtn();
-      }
-      else {
-        $( function() {
-          $( "#dialog-message" ).dialog({
+      if (gifsArr.indexOf(gifRequest) === -1) {
+        gifsArr.push(gifRequest);
+        gifBtn();
+      } else {
+        $(function () {
+          $("#dialog-message").dialog({
             modal: true,
             buttons: {
-              Ok: function() {
-                $( this ).dialog( "close" );
+              Ok: function () {
+                $(this).dialog("close");
               }
             }
           });
-        } );; 
+        });;
       }
       $("#form").val("")
     });
@@ -44,7 +43,7 @@ $(document).ready(function () {
   function displayGifs() {
     var gifRequest = $(this).attr("data-name");
     var queryURL =
-      "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=5";
+      "http://api.giphy.com/v1/gifs/search?q=" + gifRequest + "&api_key=dc6zaTOxFJmzC&limit=4";
     $.ajax({
       url: queryURL,
       method: 'GET'
@@ -88,7 +87,5 @@ $(document).ready(function () {
 
   $(function () {
     $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
-    });
+  });
 });
-
-
